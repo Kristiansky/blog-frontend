@@ -18,6 +18,7 @@ const Navigation = (props) => {
       if(res.data.status === 200){
         localStorage.removeItem('auth_token')
         localStorage.removeItem('auth_name')
+        localStorage.removeItem('user_id')
         navigate('/')
         props.setLoggedIn(false)
         toast.success(res.data.message);

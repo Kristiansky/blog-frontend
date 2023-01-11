@@ -13,13 +13,12 @@ const AddPost = () => {
   const [userId, setUserId] = useState(0)
   const [validationError,setValidationError] = useState({})
   
+  setUserId(localStorage.getItem('user_id'))
   
   const createPost = async (e) => {
     e.preventDefault();
     
     const formData = new FormData()
-  
-    setUserId(2)
     
     formData.append('title', title)
     formData.append('description', description)

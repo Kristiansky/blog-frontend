@@ -34,6 +34,7 @@ const Login = (props) => {
           setFormHasErrors(false);
           localStorage.setItem('auth_token', res.data.token)
           localStorage.setItem('auth_name', res.data.username)
+          localStorage.setItem('user_id', res.data.user_id)
           navigate('/')
           props.setLoggedIn(true)
           toast.success(res.data.message);
