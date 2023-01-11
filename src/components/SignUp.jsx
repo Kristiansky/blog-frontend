@@ -30,8 +30,8 @@ const SignUp = (props) => {
       password: registerInput.password
     }
     
-    axios.get('http://localhost/blog-backend/public/sanctum/csrf-cookie').then(res =>{
-      axios.post('http://localhost/blog-backend/public/api/register-user', data).then(res => {
+    axios.get('/sanctum/csrf-cookie').then(res =>{
+      axios.post('/api/register-user', data).then(res => {
         if(res.data.status === 200){
           localStorage.setItem('auth_token', res.data.token)
           localStorage.setItem('auth_name', res.data.username)

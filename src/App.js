@@ -9,11 +9,12 @@ import Posts from './components/Posts'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import axios from 'axios'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import Navigation from './components/Navigation'
 import PrivateRoute from './components/PrivateRoute'
 import Homepage from './components/Homepage'
 
+axios.defaults.baseURL = 'http://localhost/blog-backend/public';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.withCredentials = true;

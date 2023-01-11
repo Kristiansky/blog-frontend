@@ -11,7 +11,7 @@ const Posts = () => {
   },[])
   
   const fetchPosts = async () => {
-    await axios.get(`http://localhost/blog-backend/public/api/posts`).then(({data})=>{
+    await axios.get(`/api/posts`).then(({data})=>{
       setPosts(data)
     })
   }
@@ -40,7 +40,7 @@ const Posts = () => {
                     posts.map((row, key)=>(
                       <tr key={key}>
                         <td>{row.title}</td>
-                        <td>{row.description}</td>
+                        <td>{row.description.substring(0, 20)}...</td>
                         <td>
                           <Link to={`/post/${row.id}`} className='btn btn-success me-2'>
                             View

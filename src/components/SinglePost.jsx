@@ -20,7 +20,7 @@ export default function EditUser() {
   },[newPost])
   
   const fetchPost = async () => {
-    await axios.get(`http://localhost/blog-backend/public/api/posts/${id}`).then(({data})=>{
+    await axios.get(`/api/posts/${id}`).then(({data})=>{
       const { title, description, comments } = data.post
       setTitle(title)
       setDescription(description)
@@ -39,7 +39,7 @@ export default function EditUser() {
     formData.append('post_id', id)
     formData.append('user_id', localStorage.getItem('user_id'))
     
-    await axios.post(`http://localhost/blog-backend/public/api/comments`, formData).then(({data})=>{
+    await axios.post(`/api/comments`, formData).then(({data})=>{
       toast.success(data.message)
       setNewPost(true)
       setComment('')
@@ -99,17 +99,22 @@ export default function EditUser() {
                   </div>
                 </div>
               </Form>
-              
-              <h5>Comments:</h5>
+              {comments.length > 0 && (<h5>Comments:</h5>)}
               {
                 comments.length > 0 && (
-                  comments.map((row, key)=>(
-                    <div className="card mb-2" key={key}>
-                      <div className="card-body">
-                        <p>{row.comment}</p>
+                  comments.map(function (row, key){
+                    let date = new Date(row.created_at);
+                    return (
+                      <div className="card mb-2" key={key}>
+                        <div className="card-body">
+                          <p><strong>{row.user.name}:</strong> {row.comment}</p>
+                          <p className="text-secondary mb-0">
+                            {("0" + date.getHours()).slice(-2)}:{("0" + date.getDate()).slice(-2)}:{("0" + date.getSeconds()).slice(-2)} on {date.getDate()} {date.toLocaleString('default', { month: 'short' })}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    )
+                  })
                 )
               }
             </div>

@@ -9,7 +9,7 @@ const Homepage = () => {
   },[])
   
   const fetchPosts = async () => {
-    await axios.get(`http://localhost/blog-backend/public/api/posts-count`).then(({data})=>{
+    await axios.get(`/api/posts-count`).then(({data})=>{
       setPostCount(data)
     })
   }

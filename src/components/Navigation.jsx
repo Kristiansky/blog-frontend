@@ -14,7 +14,7 @@ const Navigation = (props) => {
   
   const logoutSubmit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost/blog-backend/public/api/logout').then(res => {
+    axios.post('/api/logout').then(res => {
       if(res.data.status === 200){
         localStorage.removeItem('auth_token')
         localStorage.removeItem('auth_name')

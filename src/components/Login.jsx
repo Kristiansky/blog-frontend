@@ -28,8 +28,8 @@ const Login = (props) => {
       password: loginInput.password,
     }
   
-    axios.get('http://localhost/blog-backend/public/sanctum/csrf-cookie').then(res => {
-      axios.post('http://localhost/blog-backend/public/api/login', data).then(res => {
+    axios.get('/sanctum/csrf-cookie').then(res => {
+      axios.post('/api/login', data).then(res => {
         if (res.data.status === 200) {
           setFormHasErrors(false);
           localStorage.setItem('auth_token', res.data.token)

@@ -10,10 +10,8 @@ const AddPost = () => {
   
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [userId, setUserId] = useState(0)
   const [validationError,setValidationError] = useState({})
   
-  setUserId(localStorage.getItem('user_id'))
   
   const createPost = async (e) => {
     e.preventDefault();
@@ -22,9 +20,9 @@ const AddPost = () => {
     
     formData.append('title', title)
     formData.append('description', description)
-    formData.append('user_id', userId)
+    formData.append('user_id', localStorage.getItem('user_id'))
     
-    await axios.post(`http://localhost/blog-backend/public/api/posts`, formData).then(({data})=>{
+    await axios.post(`/api/posts`, formData).then(({data})=>{
       toast.success(data.message)
       navigate("/")
     }).catch(({response})=>{
